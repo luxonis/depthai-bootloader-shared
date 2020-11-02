@@ -1,28 +1,60 @@
 #pragma once
 
+#include <cstdint>
+
 namespace dai
 {
 namespace bootloader
 {
 
 struct Request {
-    enum class Command : uint32_t {
-        USB_ROM_BOOT = 0, BOOT_APPLICATION = 1, UPDATE_SBR = 2, UPDATE_BOOTLOADER = 3, GET_BOOTLOADER_VERSION = 4
+    // Base request POD
+    enum Command : uint32_t {
+        USB_ROM_BOOT = 0,
+        BOOT_APPLICATION, 
+        UPDATE_SBR,
+        UPDATE_BOOTLOADER,
+        GET_BOOTLOADER_VERSION
     };
     Command command;
-    uint32_t totalSize;
-    uint32_t numPackets;
+
+    // Specific request PODs
+    struct UsbRomBoot{};
+    struct BootApplication{};
+    struct UpdateSbr{
+        uint32_t totalSize;
+        uint32_t numPackets;
+    };
+    struct UpdateBootloader{
+        uint32_t totalSize;
+        uint32_t numPackets;
+    };
+    struct GetBootloaderVersion{};
 };
 
+
 struct Response {
-    enum class Command : uint32_t {
-        FLASH_COMPLETE = 0, FLASH_STATUS_UPDATE = 1, BOOTLOADER_VERSION
+    // Base response POD
+    enum Command : uint32_t {
+        FLASH_COMPLETE = 0, 
+        FLASH_STATUS_UPDATE,
+        BOOTLOADER_VERSION
     };
     Command command;
-    uint32_t success;
-    float progress;
-    uint32_t major, minor, patch;
-    char errorMsg[64];
+
+
+    // Specific request PODs
+    struct FlashComplete{
+        uint32_t success;
+        char errorMsg[64];
+    };
+    struct FlashStatusUpdate{
+        float progress;
+    };
+    struct BootloaderVersion{
+        uint32_t major, minor, patch;
+    };
+
 };
 
 
