@@ -7,56 +7,88 @@ namespace dai
 namespace bootloader
 {
 
-struct Request {
-    // Base request POD
-    enum Command : uint32_t {
+namespace request {
+
+    enum Command {
         USB_ROM_BOOT = 0,
         BOOT_APPLICATION, 
-        UPDATE_SBR,
-        UPDATE_BOOTLOADER,
+        UPDATE_FLASH,
         GET_BOOTLOADER_VERSION
     };
-    Command command;
 
     // Specific request PODs
-    struct UsbRomBoot{};
-    struct BootApplication{};
-    struct UpdateSbr{
+    struct UsbRomBoot {
+        // Common
+        Command cmd;
+        UsbRomBoot() : cmd(USB_ROM_BOOT) {}
+    };
+    struct BootApplication {
+        // Common
+        Command cmd;
+        BootApplication() : cmd(BOOT_APPLICATION) {}
+    
+        // Data
+    };
+
+    struct UpdateFlash {
+        // Common
+        Command cmd;
+        UpdateFlash() : cmd(UPDATE_FLASH) {}
+
+        // Data
+        enum Storage : uint32_t { SBR, BOOTLOADER };
+        Storage storage;
         uint32_t totalSize;
         uint32_t numPackets;
     };
-    struct UpdateBootloader{
-        uint32_t totalSize;
-        uint32_t numPackets;
+
+    struct GetBootloaderVersion {
+        // Common
+        Command cmd;
+        GetBootloaderVersion() : cmd(GET_BOOTLOADER_VERSION) {}
+    
+        // Data
     };
-    struct GetBootloaderVersion{};
-};
+
+}
 
 
-struct Response {
-    // Base response POD
+namespace response {
+
     enum Command : uint32_t {
         FLASH_COMPLETE = 0, 
         FLASH_STATUS_UPDATE,
         BOOTLOADER_VERSION
     };
-    Command command;
-
 
     // Specific request PODs
     struct FlashComplete{
+        // Common
+        Command cmd;
+        FlashComplete() : cmd(FLASH_COMPLETE) {}
+
+        // Data
         uint32_t success;
         char errorMsg[64];
     };
-    struct FlashStatusUpdate{
+    struct FlashStatusUpdate {
+        // Common
+        Command cmd;
+        FlashStatusUpdate() : cmd(FLASH_STATUS_UPDATE) {}
+
+        // Data
         float progress;
     };
-    struct BootloaderVersion{
+    struct BootloaderVersion {
+        // Common
+        Command cmd;
+        BootloaderVersion() : cmd(BOOTLOADER_VERSION) {}
+        
+        // Data
         uint32_t major, minor, patch;
     };
 
-};
-
+}
 
 } // namespace bootloader
 } // namespace dai
