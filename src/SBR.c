@@ -145,8 +145,12 @@ bool sbr_section_is_valid(SBR_SECTION* sbr_section) {
     return true;
 }
 
-uint32_t sbr_compute_checksum(void* buffer, uint32_t size) {
-    uint32_t checksum = 5381;
+uint32_t sbr_initial_checksum(){
+    return 5381;
+}
+
+uint32_t sbr_compute_checksum_prev(void* buffer, uint32_t size, uint32_t prev_checksum){
+    uint32_t checksum = prev_checksum;
     uint8_t* p = (uint8_t*)buffer;
 
     for(unsigned int i = 0; i < size; i++) {
@@ -154,6 +158,10 @@ uint32_t sbr_compute_checksum(void* buffer, uint32_t size) {
     }
 
     return checksum;
+}
+
+uint32_t sbr_compute_checksum(void* buffer, uint32_t size) {
+    return sbr_compute_checksum_prev(buffer, size, sbr_initial_checksum());
 }
 
 void sbr_section_set_name(SBR_SECTION* sbr_section, const char* name) {

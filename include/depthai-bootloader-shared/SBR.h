@@ -53,6 +53,8 @@ int sbr_serialize(SBR* sbr, void* buffer, uint32_t max_size);
 bool sbr_section_get_bootable(SBR_SECTION* sbr_section);
 bool sbr_section_get_ignore_checksum(SBR_SECTION* sbr_section);
 bool sbr_section_is_valid(SBR_SECTION* sbr_section);
+uint32_t sbr_initial_checksum();
+uint32_t sbr_compute_checksum_prev(void* buffer, uint32_t size, uint32_t prev_checksum);
 uint32_t sbr_compute_checksum(void* buffer, uint32_t size);
 
 void sbr_section_set_name(SBR_SECTION* sbr_section, const char* name);
