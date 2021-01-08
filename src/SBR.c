@@ -145,11 +145,11 @@ bool sbr_section_is_valid(SBR_SECTION* sbr_section) {
     return true;
 }
 
-uint32_t sbr_initial_checksum(){
+uint32_t sbr_initial_checksum() {
     return 5381;
 }
 
-uint32_t sbr_compute_checksum_prev(void* buffer, uint32_t size, uint32_t prev_checksum){
+uint32_t sbr_compute_checksum_prev(void* buffer, uint32_t size, uint32_t prev_checksum) {
     uint32_t checksum = prev_checksum;
     uint8_t* p = (uint8_t*)buffer;
 
