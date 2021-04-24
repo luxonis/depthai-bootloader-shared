@@ -21,6 +21,9 @@ namespace request {
         // Common
         Command cmd;
         UsbRomBoot() : cmd(USB_ROM_BOOT) {}
+
+        // Data
+        bool keepUsbBootAfterAppRestart = false;
     };
     struct BootApplication {
         // Common
