@@ -11,9 +11,10 @@ namespace request {
 
     enum Command {
         USB_ROM_BOOT = 0,
-        BOOT_APPLICATION, 
+        BOOT_APPLICATION,
         UPDATE_FLASH,
-        GET_BOOTLOADER_VERSION
+        GET_BOOTLOADER_VERSION,
+        BOOT_MEMORY
     };
 
     // Specific request PODs
@@ -26,7 +27,7 @@ namespace request {
         // Common
         Command cmd;
         BootApplication() : cmd(BOOT_APPLICATION) {}
-    
+
         // Data
     };
 
@@ -46,9 +47,20 @@ namespace request {
         // Common
         Command cmd;
         GetBootloaderVersion() : cmd(GET_BOOTLOADER_VERSION) {}
-    
+
         // Data
     };
+
+    struct BootMemory {
+        // Common
+        Command cmd;
+        BootMemory() : cmd(BOOT_MEMORY) {}
+
+        // Data
+        uint32_t totalSize;
+        uint32_t numPackets;
+    };
+
 
 }
 
@@ -56,7 +68,7 @@ namespace request {
 namespace response {
 
     enum Command : uint32_t {
-        FLASH_COMPLETE = 0, 
+        FLASH_COMPLETE = 0,
         FLASH_STATUS_UPDATE,
         BOOTLOADER_VERSION
     };
@@ -83,7 +95,7 @@ namespace response {
         // Common
         Command cmd;
         BootloaderVersion() : cmd(BOOTLOADER_VERSION) {}
-        
+
         // Data
         uint32_t major, minor, patch;
     };
