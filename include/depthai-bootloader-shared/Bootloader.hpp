@@ -29,37 +29,37 @@ protected:
 
 namespace request {
 
-    enum Command {
+    enum Command : uint32_t {
         USB_ROM_BOOT = 0,
         BOOT_APPLICATION,
         UPDATE_FLASH,
         GET_BOOTLOADER_VERSION,
         UPDATE_FLASH_EX,
-        UPDATE_FLASH_EX_2
+        UPDATE_FLASH_EX_2,
+        NO_OP,
+        GET_BOOTLOADER_TYPE,
     };
 
-    struct ARequest {
-        ARequest() = delete;
+    struct BaseRequest {
+        BaseRequest(Command command) : cmd(command){}
         Command cmd;
-    protected:
-        ARequest(Command command) : cmd(command){}
     };
 
     // Specific request PODs
-    struct UsbRomBoot : ARequest {
+    struct UsbRomBoot : BaseRequest {
         // Common
-        UsbRomBoot() : ARequest(USB_ROM_BOOT) {}
+        UsbRomBoot() : BaseRequest(USB_ROM_BOOT) {}
     };
-    struct BootApplication : ARequest {
+    struct BootApplication : BaseRequest {
         // Common
-        BootApplication() : ARequest(BOOT_APPLICATION) {}
+        BootApplication() : BaseRequest(BOOT_APPLICATION) {}
 
         // Data
     };
 
-    struct UpdateFlash : ARequest {
+    struct UpdateFlash : BaseRequest {
         // Common
-        UpdateFlash() : ARequest(UPDATE_FLASH) {}
+        UpdateFlash() : BaseRequest(UPDATE_FLASH) {}
 
         // Data
         enum Storage : uint32_t { SBR, BOOTLOADER };
@@ -69,17 +69,17 @@ namespace request {
     };
 
 
-    struct GetBootloaderVersion : ARequest {
+    struct GetBootloaderVersion : BaseRequest {
         // Common
-        GetBootloaderVersion() : ARequest(GET_BOOTLOADER_VERSION) {}
+        GetBootloaderVersion() : BaseRequest(GET_BOOTLOADER_VERSION) {}
 
         // Data
     };
 
     // UpdateFlashEx - Additional options
-    struct UpdateFlashEx : ARequest {
+    struct UpdateFlashEx : BaseRequest {
         // Common
-        UpdateFlashEx() : ARequest(UPDATE_FLASH_EX) {}
+        UpdateFlashEx() : BaseRequest(UPDATE_FLASH_EX) {}
 
         // Data
         Memory memory;
@@ -89,9 +89,9 @@ namespace request {
     };
 
     // UpdateFlashEx2 - Additional options
-    struct UpdateFlashEx2 : ARequest {
+    struct UpdateFlashEx2 : BaseRequest {
         // Common
-        UpdateFlashEx2() : ARequest(UPDATE_FLASH_EX_2) {}
+        UpdateFlashEx2() : BaseRequest(UPDATE_FLASH_EX_2) {}
 
         // Data
         Memory memory;
@@ -99,6 +99,15 @@ namespace request {
         uint32_t totalSize;
         uint32_t numPackets;
     };
+
+
+    struct GetBootloaderType : BaseRequest {
+        // Common
+        GetBootloaderType() : BaseRequest(GET_BOOTLOADER_TYPE) {}
+
+        // Data
+    };
+
 
 }
 
@@ -112,40 +121,38 @@ namespace response {
         BOOTLOADER_TYPE
     };
 
-    struct AResponse {
-        AResponse() = delete;
+    struct BaseResponse {
+        BaseResponse(Command command) : cmd(command){}
         Command cmd;
-    protected:
-        AResponse(Command command) : cmd(command){}
     };
 
     // Specific request PODs
-    struct FlashComplete : AResponse {
+    struct FlashComplete : BaseResponse {
         // Common
-        FlashComplete() : AResponse(FLASH_COMPLETE) {}
+        FlashComplete() : BaseResponse(FLASH_COMPLETE) {}
 
         // Data
         uint32_t success;
         char errorMsg[64];
     };
-    struct FlashStatusUpdate : AResponse {
+    struct FlashStatusUpdate : BaseResponse {
         // Common
-        FlashStatusUpdate() : AResponse(FLASH_STATUS_UPDATE) {}
+        FlashStatusUpdate() : BaseResponse(FLASH_STATUS_UPDATE) {}
 
         // Data
         float progress;
     };
-    struct BootloaderVersion : AResponse {
+    struct BootloaderVersion : BaseResponse {
         // Common
-        BootloaderVersion() : AResponse(BOOTLOADER_VERSION) {}
+        BootloaderVersion() : BaseResponse(BOOTLOADER_VERSION) {}
 
         // Data
         uint32_t major, minor, patch;
     };
 
-    struct BootloaderType : AResponse {
+    struct BootloaderType : BaseResponse {
         // Common
-        BootloaderType() : AResponse(BOOTLOADER_TYPE) {}
+        BootloaderType() : BaseResponse(BOOTLOADER_TYPE) {}
 
         // Data
         Type type;
