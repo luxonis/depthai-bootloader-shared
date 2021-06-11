@@ -4,7 +4,7 @@
 #include "stddef.h"
 #include "string.h"
 
-static uint32_t read_uint32_t(void* buffer) {
+static uint32_t read_uint32_t(const void* buffer) {
     if(buffer == NULL) return 0;
     uint8_t* p = (uint8_t*)buffer;
     uint32_t val = 0;
@@ -21,11 +21,11 @@ static void write_uint32_t(void* buffer, uint32_t val) {
     }
 }
 
-static int read_section(void* buffer, uint32_t size, SBR_SECTION* section) {
+static int read_section(const void* buffer, uint32_t size, SBR_SECTION* section) {
     if(section == NULL) return -1;
     if(size < sizeof(SBR_SECTION_RAW)) return -1;
 
-    uint8_t* p = (uint8_t*)buffer;
+    const uint8_t* p = (const uint8_t*)buffer;
 
     // Read name
     memcpy(section->name, p, sizeof(section->name));
@@ -54,13 +54,13 @@ static int read_section(void* buffer, uint32_t size, SBR_SECTION* section) {
     return 0;
 }
 
-int sbr_parse(void* buffer, uint32_t size, SBR* sbr) {
+int sbr_parse(const void* buffer, uint32_t size, SBR* sbr) {
     if(buffer == NULL) return -1;
     if(sbr == NULL) return -1;
     if(size < SBR_RAW_SIZE) return -1;
 
     // pointer to be moved to current data being parsed
-    uint8_t* p = (uint8_t*)buffer;
+    const uint8_t* p = (uint8_t*)buffer;
 
     // copy identifier
     memcpy(sbr->identifier, p, SBR_IDENTIFIER_SIZE);
@@ -81,7 +81,7 @@ int sbr_parse(void* buffer, uint32_t size, SBR* sbr) {
     return 0;
 }
 
-int sbr_serialize(SBR* sbr, void* buffer, uint32_t max_size) {
+int sbr_serialize(const SBR* sbr, void* buffer, uint32_t max_size) {
     if(buffer == NULL) return -1;
     if(sbr == NULL) return -1;
     if(max_size < SBR_RAW_SIZE) return -1;
@@ -125,19 +125,19 @@ int sbr_serialize(SBR* sbr, void* buffer, uint32_t max_size) {
     return 0;
 }
 
-bool sbr_section_get_bootable(SBR_SECTION* sbr_section) {
+bool sbr_section_get_bootable(const SBR_SECTION* sbr_section) {
     if(sbr_section == NULL) return false;
     if(sbr_section->flags & SBR_SECTION_FLAG_BOOTABLE) return true;
     return false;
 }
 
-bool sbr_section_get_ignore_checksum(SBR_SECTION* sbr_section) {
+bool sbr_section_get_ignore_checksum(const SBR_SECTION* sbr_section) {
     if(sbr_section == NULL) return false;
     if(sbr_section->flags & SBR_SECTION_FLAG_IGNORE_CHECKSUM) return true;
     return false;
 }
 
-bool sbr_section_is_valid(SBR_SECTION* sbr_section) {
+bool sbr_section_is_valid(const SBR_SECTION* sbr_section) {
     // Valid SBR section must have a name set, as well as a non zero size
     if(sbr_section->name[0] == 0 || ((uint8_t)sbr_section->name[0]) == 0xFF) {
         return false;
@@ -149,7 +149,7 @@ uint32_t sbr_initial_checksum() {
     return 5381;
 }
 
-uint32_t sbr_compute_checksum_prev(void* buffer, uint32_t size, uint32_t prev_checksum) {
+uint32_t sbr_compute_checksum_prev(const void* buffer, uint32_t size, uint32_t prev_checksum) {
     uint32_t checksum = prev_checksum;
     uint8_t* p = (uint8_t*)buffer;
 
@@ -160,7 +160,7 @@ uint32_t sbr_compute_checksum_prev(void* buffer, uint32_t size, uint32_t prev_ch
     return checksum;
 }
 
-uint32_t sbr_compute_checksum(void* buffer, uint32_t size) {
+uint32_t sbr_compute_checksum(const void* buffer, uint32_t size) {
     return sbr_compute_checksum_prev(buffer, size, sbr_initial_checksum());
 }
 
