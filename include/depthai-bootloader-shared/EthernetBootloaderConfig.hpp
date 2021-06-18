@@ -23,9 +23,9 @@ struct EthernetBootloaderConfig {
 struct EthernetBootloaderStructure : Structure {
 
     constexpr static long HEADER_OFFSET = 0;
-    constexpr static long HEADER_SIZE = 128;
+    constexpr static long HEADER_SIZE = 512;
     constexpr static long CONFIG_SIZE = 16 * 1024;
-    constexpr static long BOOTLOADER_OFFSET = 0 + HEADER_SIZE;
+    constexpr static long BOOTLOADER_OFFSET = HEADER_OFFSET + HEADER_SIZE;
     constexpr static long BOOTLOADER_SIZE = 8 * 1024 * 1024 - CONFIG_SIZE;
     constexpr static long CONFIG_OFFSET = BOOTLOADER_OFFSET + BOOTLOADER_SIZE;
     constexpr static long APPLICATION_OFFSET = CONFIG_OFFSET + CONFIG_SIZE;
