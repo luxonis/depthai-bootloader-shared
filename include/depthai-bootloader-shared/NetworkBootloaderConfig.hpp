@@ -11,16 +11,17 @@ namespace bootloader
 {
 
 // Config
-// TODO(themarpe)
-struct EthernetBootloaderConfig {
+/* TODO(themarpe)
+struct NetworkBootloaderConfig {
     char ip[16];
     char subnetMask[16];
     char gateway[16];
 };
+*/
 
 
 // Structure
-struct EthernetBootloaderStructure : Structure {
+struct NetworkBootloaderStructure : Structure {
 
     constexpr static long HEADER_OFFSET = 0;
     constexpr static long HEADER_SIZE = 512;
@@ -30,7 +31,7 @@ struct EthernetBootloaderStructure : Structure {
     constexpr static long CONFIG_OFFSET = BOOTLOADER_OFFSET + BOOTLOADER_SIZE;
     constexpr static long APPLICATION_OFFSET = CONFIG_OFFSET + CONFIG_SIZE;
 
-    EthernetBootloaderStructure() : Structure({
+    NetworkBootloaderStructure() : Structure({
         {Section::HEADER, HEADER_OFFSET},
         {Section::BOOTLOADER_CONFIG, CONFIG_OFFSET},
         {Section::BOOTLOADER, BOOTLOADER_OFFSET},
@@ -43,6 +44,8 @@ struct EthernetBootloaderStructure : Structure {
     }) {}
 
 };
+
+static const NetworkBootloaderStructure networkBootloaderStructure;
 
 } // namespace bootloader
 } // namespace dai

@@ -9,7 +9,7 @@ namespace bootloader
 {
 
 enum class Type : std::int32_t {
-    USB, ETHERNET
+    USB, NETWORK
 };
 
 enum class Memory : std::int32_t {
@@ -176,3 +176,20 @@ namespace response {
 } // namespace dai
 
 
+#include "UsbBootloaderConfig.hpp"
+#include "NetworkBootloaderConfig.hpp"
+
+namespace dai {
+namespace bootloader {
+
+constexpr const Structure& getStructure(Type type){
+    switch(type){
+        case Type::USB: return usbBootloaderStructure;
+        case Type::NETWORK: return networkBootloaderStructure;
+    }
+    // Default
+    return usbBootloaderStructure;
+}
+
+} // namespace bootloader
+} // namespace dai

@@ -47,6 +47,8 @@ struct UsbBootloaderStructure : Structure {
 
 };
 
+static const UsbBootloaderStructure usbBootloaderStructure;
+
 } // namespace bootloader
 } // namespace dai
 
