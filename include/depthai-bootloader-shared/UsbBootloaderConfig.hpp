@@ -1,10 +1,12 @@
 #pragma once
 
+// std
 #include <cstdint>
 #include <chrono>
 #include <map>
 
-#include "Bootloader.hpp"
+// project
+#include "Structure.hpp"
 
 namespace dai
 {
@@ -46,8 +48,6 @@ struct UsbBootloaderStructure : Structure {
     }) {}
 
 };
-
-static const UsbBootloaderStructure usbBootloaderStructure;
 
 } // namespace bootloader
 } // namespace dai

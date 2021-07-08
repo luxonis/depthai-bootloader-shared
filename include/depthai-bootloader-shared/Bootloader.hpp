@@ -1,31 +1,29 @@
 #pragma once
 
+// std
 #include <cstdint>
 #include <map>
+
+// project
+#include "Type.hpp"
+#include "Section.hpp"
+#include "Memory.hpp"
+#include "UsbBootloaderConfig.hpp"
+#include "NetworkBootloaderConfig.hpp"
 
 namespace dai
 {
 namespace bootloader
 {
 
-enum class Type : std::int32_t {
-    USB, NETWORK
-};
-
-enum class Memory : std::int32_t {
-    FLASH, EMMC
-};
-
-enum class Section : std::int32_t {
-    HEADER, BOOTLOADER, BOOTLOADER_CONFIG, APPLICATION
-};
-
-struct Structure {
-    Structure() = default;
-    std::map<Section, long> offset, size;
-protected:
-    Structure(decltype(offset) a, decltype(size) b) : offset(a), size(b) {}
-};
+inline const Structure getStructure(Type type){
+    switch(type){
+        case Type::USB: return UsbBootloaderStructure();
+        case Type::NETWORK: return NetworkBootloaderStructure();
+    }
+    // Default
+    return UsbBootloaderStructure();
+}
 
 namespace request {
 
@@ -170,25 +168,6 @@ namespace response {
         Type type;
     };
 
-}
-
-} // namespace bootloader
-} // namespace dai
-
-
-#include "UsbBootloaderConfig.hpp"
-#include "NetworkBootloaderConfig.hpp"
-
-namespace dai {
-namespace bootloader {
-
-constexpr const Structure& getStructure(Type type){
-    switch(type){
-        case Type::USB: return usbBootloaderStructure;
-        case Type::NETWORK: return networkBootloaderStructure;
-    }
-    // Default
-    return usbBootloaderStructure;
 }
 
 } // namespace bootloader
