@@ -13,13 +13,23 @@ namespace bootloader
 {
 
 // Config
-/* TODO(themarpe)
 struct NetworkBootloaderConfig {
-    char ip[16];
-    char subnetMask[16];
-    char gateway[16];
+    /**
+     * If timeout < 0 - waits forever
+     * if timeout == 0 - no timeout
+     * if timeout > 0 - waits timeout milliseconds
+     */
+    std::int32_t timeoutMs = -1;
+    // Network configuration options
+    // IPv4
+    std::uint32_t ipv4;
+    std::uint32_t ipv4Mask;
+    std::uint32_t ipv4Gateway;
+    // TODO(themarpe) - IPv6
+    std::uint32_t ipv6[4];
+    std::uint32_t ipv6Prefix;
+    std::uint32_t ipv6Gateway[4];
 };
-*/
 
 
 // Structure
