@@ -8,22 +8,11 @@
 #include "Type.hpp"
 #include "Section.hpp"
 #include "Memory.hpp"
-#include "UsbBootloaderConfig.hpp"
-#include "NetworkBootloaderConfig.hpp"
 
 namespace dai
 {
 namespace bootloader
 {
-
-inline const Structure getStructure(Type type){
-    switch(type){
-        case Type::USB: return UsbBootloaderStructure();
-        case Type::NETWORK: return NetworkBootloaderStructure();
-    }
-    // Default
-    return UsbBootloaderStructure();
-}
 
 namespace request {
 
@@ -37,6 +26,8 @@ namespace request {
         UPDATE_FLASH_EX_2,
         NO_OP,
         GET_BOOTLOADER_TYPE,
+        SET_BOOTLOADER_CONFIG,
+        GET_BOOTLOADER_CONFIG,
     };
 
     struct BaseRequest {
@@ -75,6 +66,7 @@ namespace request {
         // Data
     };
 
+    // 0.0.12 or higher
     struct BootMemory : BaseRequest {
         // Common
         BootMemory() : BaseRequest(BOOT_MEMORY) {}
@@ -114,10 +106,26 @@ namespace request {
         GetBootloaderType() : BaseRequest(GET_BOOTLOADER_TYPE) {}
 
         // Data
+    };
+
+
+    // 0.0.14 or higher
+    struct SetBootloaderConfig : BaseRequest {
+        // Common
+        SetBootloaderConfig() : BaseRequest(SET_BOOTLOADER_CONFIG) {}
+
+        // Data
+        Memory memory;
         uint32_t totalSize;
         uint32_t numPackets;
     };
 
+    struct GetBootloaderConfig : BaseRequest {
+        // Common
+        GetBootloaderConfig() : BaseRequest(GET_BOOTLOADER_CONFIG) {}
+
+        // Data
+    };
 
 }
 
@@ -128,7 +136,8 @@ namespace response {
         FLASH_COMPLETE = 0,
         FLASH_STATUS_UPDATE,
         BOOTLOADER_VERSION,
-        BOOTLOADER_TYPE
+        BOOTLOADER_TYPE,
+        GET_BOOTLOADER_CONFIG,
     };
 
     struct BaseResponse {
@@ -166,6 +175,19 @@ namespace response {
 
         // Data
         Type type;
+    };
+
+
+    // 0.0.14
+    struct GetBootloaderConfig : BaseResponse {
+        // Common
+        GetBootloaderConfig() : BaseResponse(GET_BOOTLOADER_CONFIG) {}
+
+        // Data
+        uint32_t success;
+        char errorMsg[64];
+        uint32_t totalSize;
+        uint32_t numPackets;
     };
 
 }
