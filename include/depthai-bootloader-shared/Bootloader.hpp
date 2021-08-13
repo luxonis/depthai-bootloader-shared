@@ -201,7 +201,7 @@ namespace response {
 
     struct BootloaderMemory : BaseResponse {
         // Common
-        GetBootloaderMemory() : BaseResponse(BOOTLOADER_MEMORY) {}
+        BootloaderMemory() : BaseResponse(BOOTLOADER_MEMORY) {}
 
         // Data
         Memory memory;
