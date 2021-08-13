@@ -117,6 +117,7 @@ namespace request {
 
         // Data
         Memory memory;
+        uint32_t clearConfig;
         uint32_t totalSize;
         uint32_t numPackets;
     };
