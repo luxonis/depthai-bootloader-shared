@@ -28,6 +28,7 @@ namespace request {
         GET_BOOTLOADER_TYPE,
         SET_BOOTLOADER_CONFIG,
         GET_BOOTLOADER_CONFIG,
+        BOOTLOADER_MEMORY,
     };
 
     struct BaseRequest {
@@ -125,6 +126,13 @@ namespace request {
         GetBootloaderConfig() : BaseRequest(GET_BOOTLOADER_CONFIG) {}
 
         // Data
+        Memory memory;
+    };
+    struct BootloaderMemory : BaseRequest {
+        // Common
+        BootloaderMemory() : BaseRequest(BOOTLOADER_MEMORY) {}
+
+        // Data
     };
 
 }
@@ -138,6 +146,7 @@ namespace response {
         BOOTLOADER_VERSION,
         BOOTLOADER_TYPE,
         GET_BOOTLOADER_CONFIG,
+        BOOTLOADER_MEMORY,
     };
 
     struct BaseResponse {
@@ -190,6 +199,13 @@ namespace response {
         uint32_t numPackets;
     };
 
+    struct BootloaderMemory : BaseResponse {
+        // Common
+        GetBootloaderMemory() : BaseResponse(BOOTLOADER_MEMORY) {}
+
+        // Data
+        Memory memory;
+    };
 }
 
 } // namespace bootloader
