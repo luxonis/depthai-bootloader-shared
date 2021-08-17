@@ -30,7 +30,7 @@ struct NetworkConfig {
      * if timeout == 0 - no timeout
      * if timeout > 0 - waits timeout milliseconds
      */
-    int timeoutMs = 15000;
+    int timeoutMs = 30000;
     // Network configuration options
     // IPv4
     std::uint32_t ipv4 = 0;
