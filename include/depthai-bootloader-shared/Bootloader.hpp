@@ -116,10 +116,11 @@ namespace request {
         SetBootloaderConfig() : BaseRequest(SET_BOOTLOADER_CONFIG) {}
 
         // Data
-        Memory memory;
-        uint32_t clearConfig;
-        uint32_t totalSize;
-        uint32_t numPackets;
+        Memory memory = Memory::AUTO;
+        int64_t offset = -1;
+        uint32_t clearConfig = 0;
+        uint32_t totalSize = 0;
+        uint32_t numPackets = 0;
     };
 
     struct GetBootloaderConfig : BaseRequest {
@@ -127,7 +128,8 @@ namespace request {
         GetBootloaderConfig() : BaseRequest(GET_BOOTLOADER_CONFIG) {}
 
         // Data
-        Memory memory;
+        Memory memory = Memory::AUTO;
+        int64_t offset = -1;
     };
     struct BootloaderMemory : BaseRequest {
         // Common
