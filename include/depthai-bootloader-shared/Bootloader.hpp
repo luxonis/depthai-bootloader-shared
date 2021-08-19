@@ -148,6 +148,7 @@ namespace response {
         BOOTLOADER_TYPE,
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
+        BOOT_APPLICATION,
     };
 
     struct BaseResponse {
@@ -206,6 +207,15 @@ namespace response {
 
         // Data
         Memory memory;
+    };
+
+    struct BootApplication : BaseResponse {
+        // Common
+        BootApplication() : BaseResponse(BOOT_APPLICATION) {}
+
+        // Data
+        uint32_t success;
+        char errorMsg[64];
     };
 }
 

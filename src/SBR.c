@@ -137,6 +137,12 @@ bool sbr_section_get_ignore_checksum(const SBR_SECTION* sbr_section) {
     return false;
 }
 
+SBR_COMPRESSION sbr_section_get_compression(const SBR_SECTION* sbr_section){
+    if(sbr_section == NULL) return SBR_NO_COMPRESSION;
+    return sbr_section->flags & SBR_SECTION_FLAG_COMPRESSION_MASK;
+}
+
+
 bool sbr_section_is_valid(const SBR_SECTION* sbr_section) {
     // Valid SBR section must have a name set, as well as a non zero size
     if(sbr_section->name[0] == 0 || ((uint8_t)sbr_section->name[0]) == 0xFF) {
@@ -205,4 +211,14 @@ void sbr_section_set_ignore_checksum(SBR_SECTION* sbr_section, bool ignore_check
     } else {
         sbr_section->flags &= ~SBR_SECTION_FLAG_IGNORE_CHECKSUM;
     }
+}
+
+void sbr_section_set_compression(SBR_SECTION* sbr_section, SBR_COMPRESSION compression){
+    assert(sbr_section != NULL);
+
+    // Clear previous compression
+    sbr_section->flags &= ~SBR_SECTION_FLAG_COMPRESSION_MASK;
+
+    // Set new compression
+    sbr_section->flags |= compression;
 }
