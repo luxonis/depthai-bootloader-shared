@@ -130,6 +130,7 @@ namespace request {
         // Data
         Memory memory = Memory::AUTO;
         int64_t offset = -1;
+        uint32_t maxSize = 0;
     };
     struct BootloaderMemory : BaseRequest {
         // Common
