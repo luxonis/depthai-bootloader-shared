@@ -72,6 +72,7 @@ struct UsbBootloaderStructure : Structure {
 
 inline const Structure getStructure(Type type){
     switch(type){
+        case Type::AUTO: throw std::invalid_argument("Invalid argument to getStructure function");
         case Type::USB: return UsbBootloaderStructure();
         case Type::NETWORK: return NetworkBootloaderStructure();
     }
