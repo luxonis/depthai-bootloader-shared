@@ -2,6 +2,7 @@
 
 // std
 #include <map>
+#include <stdexcept>
 
 // project
 #include "Section.hpp"
