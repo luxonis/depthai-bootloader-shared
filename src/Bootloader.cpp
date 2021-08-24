@@ -45,5 +45,5 @@ decltype(response::BootloaderMemory::NAME) constexpr response::BootloaderMemory:
 decltype(response::BootApplication::VERSION) constexpr response::BootApplication::VERSION;
 decltype(response::BootApplication::NAME) constexpr response::BootApplication::NAME;
 
-}
-}
+}  // namespace bootloader
+}  // namespace dai
