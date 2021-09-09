@@ -9,7 +9,7 @@ namespace bootloader
 {
 
 enum class Section : std::int32_t {
-    HEADER, BOOTLOADER, BOOTLOADER_CONFIG, APPLICATION
+    AUTO = -1, HEADER = 0, BOOTLOADER = 1, BOOTLOADER_CONFIG = 2, APPLICATION = 3
 };
 
 } // namespace bootloader

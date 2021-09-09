@@ -9,7 +9,7 @@ namespace bootloader
 {
 
 enum class Type : std::int32_t {
-    USB, NETWORK
+    AUTO = -1, USB = 0, NETWORK = 1
 };
 
 } // namespace bootloader
