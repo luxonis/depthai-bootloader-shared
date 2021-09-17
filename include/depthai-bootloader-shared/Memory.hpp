@@ -9,7 +9,7 @@ namespace bootloader
 {
 
 enum class Memory : std::int32_t {
-    FLASH, EMMC
+    AUTO = -1, FLASH = 0, EMMC = 1,
 };
 
 } // namespace bootloader
