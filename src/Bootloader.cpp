@@ -28,8 +28,8 @@ decltype(request::GetBootloaderConfig::VERSION) constexpr request::GetBootloader
 decltype(request::GetBootloaderConfig::NAME) constexpr request::GetBootloaderConfig::NAME;
 decltype(request::BootloaderMemory::VERSION) constexpr request::BootloaderMemory::VERSION;
 decltype(request::BootloaderMemory::NAME) constexpr request::BootloaderMemory::NAME;
-decltype(request::UpdateBootHeader::VERSION) constexpr request::UpdateBootHeader::VERSION;
-decltype(request::UpdateBootHeader::NAME) constexpr request::UpdateBootHeader::NAME;
+decltype(request::UpdateFlashBootHeader::VERSION) constexpr request::UpdateFlashBootHeader::VERSION;
+decltype(request::UpdateFlashBootHeader::NAME) constexpr request::UpdateFlashBootHeader::NAME;
 decltype(request::ReadFlash::VERSION) constexpr request::ReadFlash::VERSION;
 decltype(request::ReadFlash::NAME) constexpr request::ReadFlash::NAME;
 
