@@ -29,6 +29,8 @@ namespace request {
         SET_BOOTLOADER_CONFIG,
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
+        UPDATE_BOOT_HEADER,
+        READ_FLASH,
     };
 
     struct BaseRequest {
@@ -172,6 +174,38 @@ namespace request {
         static constexpr const char* NAME = "BootloaderMemory";
     };
 
+    struct UpdateBootHeader : BaseRequest {
+        // Common
+        UpdateBootHeader() : BaseRequest(UPDATE_BOOT_HEADER) {}
+
+        // Data
+        enum Type : int32_t { GPIO_MODE = 0, USB_RECOVERY, FLASH, FAST_FLASH };
+
+        Type type;
+        int64_t offset = -1;
+        int64_t location = -1;
+        int32_t dummyCycles = -1;
+        int32_t frequency = -1;
+        int32_t gpioMode = -1;
+
+
+        static constexpr const char* VERSION = "0.0.16";
+        static constexpr const char* NAME = "UpdateBootHeader";
+    };
+
+    struct ReadFlash : BaseRequest {
+        // Common
+        ReadFlash() : BaseRequest(READ_FLASH) {}
+
+        // Data
+        Memory memory = Memory::AUTO;
+        uint32_t offset = 0;
+        uint32_t totalSize = 0;
+
+        static constexpr const char* VERSION = "0.0.16";
+        static constexpr const char* NAME = "ReadFlash";
+    };
+
 }
 
 
@@ -185,6 +219,7 @@ namespace response {
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
         BOOT_APPLICATION,
+        READ_FLASH,
     };
 
     struct BaseResponse {
@@ -274,6 +309,22 @@ namespace response {
         static constexpr const char* VERSION = "0.0.14";
         static constexpr const char* NAME = "BootApplication";
     };
+
+    struct ReadFlash : BaseResponse {
+        // Common
+        ReadFlash() : BaseResponse(READ_FLASH) {}
+
+        // Data
+        uint32_t success;
+        char errorMsg[64];
+        uint32_t totalSize;
+        uint32_t numPackets;
+
+        static constexpr const char* VERSION = "0.0.16";
+        static constexpr const char* NAME = "ReadFlash";
+    };
+
+
 }
 
 } // namespace bootloader
