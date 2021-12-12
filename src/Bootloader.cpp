@@ -28,6 +28,10 @@ decltype(request::GetBootloaderConfig::VERSION) constexpr request::GetBootloader
 decltype(request::GetBootloaderConfig::NAME) constexpr request::GetBootloaderConfig::NAME;
 decltype(request::BootloaderMemory::VERSION) constexpr request::BootloaderMemory::VERSION;
 decltype(request::BootloaderMemory::NAME) constexpr request::BootloaderMemory::NAME;
+decltype(request::UpdateBootHeader::VERSION) constexpr request::UpdateBootHeader::VERSION;
+decltype(request::UpdateBootHeader::NAME) constexpr request::UpdateBootHeader::NAME;
+decltype(request::ReadFlash::VERSION) constexpr request::ReadFlash::VERSION;
+decltype(request::ReadFlash::NAME) constexpr request::ReadFlash::NAME;
 
 // Responses
 decltype(response::FlashComplete::VERSION) constexpr response::FlashComplete::VERSION;
@@ -44,6 +48,8 @@ decltype(response::BootloaderMemory::VERSION) constexpr response::BootloaderMemo
 decltype(response::BootloaderMemory::NAME) constexpr response::BootloaderMemory::NAME;
 decltype(response::BootApplication::VERSION) constexpr response::BootApplication::VERSION;
 decltype(response::BootApplication::NAME) constexpr response::BootApplication::NAME;
+decltype(response::ReadFlash::VERSION) constexpr response::ReadFlash::VERSION;
+decltype(response::ReadFlash::NAME) constexpr response::ReadFlash::NAME;
 
 }  // namespace bootloader
 }  // namespace dai
