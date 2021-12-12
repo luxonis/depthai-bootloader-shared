@@ -29,7 +29,7 @@ namespace request {
         SET_BOOTLOADER_CONFIG,
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
-        UPDATE_BOOT_HEADER,
+        UPDATE_FLASH_BOOT_HEADER,
         READ_FLASH,
     };
 
@@ -174,12 +174,12 @@ namespace request {
         static constexpr const char* NAME = "BootloaderMemory";
     };
 
-    struct UpdateBootHeader : BaseRequest {
+    struct UpdateFlashBootHeader : BaseRequest {
         // Common
-        UpdateBootHeader() : BaseRequest(UPDATE_BOOT_HEADER) {}
+        UpdateFlashBootHeader() : BaseRequest(UPDATE_FLASH_BOOT_HEADER) {}
 
         // Data
-        enum Type : int32_t { GPIO_MODE = 0, USB_RECOVERY, FLASH, FAST_FLASH };
+        enum Type : int32_t { GPIO_MODE = 0, USB_RECOVERY, NORMAL, FAST };
 
         Type type;
         int64_t offset = -1;
@@ -190,7 +190,7 @@ namespace request {
 
 
         static constexpr const char* VERSION = "0.0.16";
-        static constexpr const char* NAME = "UpdateBootHeader";
+        static constexpr const char* NAME = "UpdateFlashBootHeader";
     };
 
     struct ReadFlash : BaseRequest {
