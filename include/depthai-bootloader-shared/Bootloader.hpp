@@ -31,6 +31,9 @@ namespace request {
         BOOTLOADER_MEMORY,
         UPDATE_FLASH_BOOT_HEADER,
         READ_FLASH,
+        GET_BOOTLOADER_COMMIT,
+        GET_APPLICATION_DETAILS,
+        GET_MEMORY_SIZE,
     };
 
     struct BaseRequest {
@@ -206,6 +209,37 @@ namespace request {
         static constexpr const char* NAME = "ReadFlash";
     };
 
+    // 0.0.18
+    struct GetBootloaderCommit : BaseRequest {
+        // Common
+        GetBootloaderCommit() : BaseRequest(GET_BOOTLOADER_COMMIT) {}
+
+        // Data
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "GetBootloaderCommit";
+    };
+
+    struct GetApplicationDetails : BaseRequest {
+        // Common
+        GetApplicationDetails() : BaseRequest(GET_APPLICATION_DETAILS) {}
+
+        // Data
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "GetApplicationDetails";
+    };
+
+    struct GetMemorySize : BaseRequest {
+        // Common
+        GetMemorySize() : BaseRequest(GET_MEMORY_SIZE) {}
+
+        // Data
+        Memory memory = Memory::FLASH;
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "GetMemorySize";
+    };
 }
 
 
@@ -220,6 +254,9 @@ namespace response {
         BOOTLOADER_MEMORY,
         BOOT_APPLICATION,
         READ_FLASH,
+        BOOTLOADER_COMMIT,
+        APPLICATION_DETAILS,
+        MEMORY_SIZE,
     };
 
     struct BaseResponse {
@@ -317,15 +354,55 @@ namespace response {
         ReadFlash() : BaseResponse(READ_FLASH) {}
 
         // Data
-        uint32_t success;
-        char errorMsg[64];
-        uint32_t totalSize;
-        uint32_t numPackets;
+        uint32_t success = 0;
+        char errorMsg[64]{0};
+        uint32_t totalSize = 0;
+        uint32_t numPackets = 0;
 
         static constexpr const char* VERSION = "0.0.16";
         static constexpr const char* NAME = "ReadFlash";
     };
 
+    struct BootloaderCommit : BaseResponse {
+        // Common
+        BootloaderCommit() : BaseResponse(BOOTLOADER_COMMIT) {}
+
+        // Data
+        char commitStr[64]{0};
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "BootloaderCommit";
+    };
+
+
+    struct ApplicationDetails : BaseResponse {
+        // Common
+        ApplicationDetails() : BaseResponse(APPLICATION_DETAILS) {}
+
+        // Data
+        uint32_t success = 0;
+        char errorMsg[64]{0};
+        uint32_t hasFirmwareVersion = 0;
+        uint32_t hasApplicationName = 0;
+        char firmwareVersionStr[256]{0};
+        char applicationNameStr[4*1024]{0};
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "ApplicationVersion";
+    };
+
+
+    struct MemorySize : BaseResponse {
+        // Common
+        MemorySize() : BaseResponse(MEMORY_SIZE) {}
+
+        // Data
+        Memory memory = Memory::FLASH;
+        int64_t memorySize = 0;
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "MemorySize";
+    };
 
 }
 

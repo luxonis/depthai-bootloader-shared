@@ -32,6 +32,12 @@ decltype(request::UpdateFlashBootHeader::VERSION) constexpr request::UpdateFlash
 decltype(request::UpdateFlashBootHeader::NAME) constexpr request::UpdateFlashBootHeader::NAME;
 decltype(request::ReadFlash::VERSION) constexpr request::ReadFlash::VERSION;
 decltype(request::ReadFlash::NAME) constexpr request::ReadFlash::NAME;
+decltype(request::GetBootloaderCommit::VERSION) constexpr request::GetBootloaderCommit::VERSION;
+decltype(request::GetBootloaderCommit::NAME) constexpr request::GetBootloaderCommit::NAME;
+decltype(request::GetApplicationDetails::VERSION) constexpr request::GetApplicationDetails::VERSION;
+decltype(request::GetApplicationDetails::NAME) constexpr request::GetApplicationDetails::NAME;
+decltype(request::GetMemorySize::VERSION) constexpr request::GetMemorySize::VERSION;
+decltype(request::GetMemorySize::NAME) constexpr request::GetMemorySize::NAME;
 
 // Responses
 decltype(response::FlashComplete::VERSION) constexpr response::FlashComplete::VERSION;
@@ -50,6 +56,12 @@ decltype(response::BootApplication::VERSION) constexpr response::BootApplication
 decltype(response::BootApplication::NAME) constexpr response::BootApplication::NAME;
 decltype(response::ReadFlash::VERSION) constexpr response::ReadFlash::VERSION;
 decltype(response::ReadFlash::NAME) constexpr response::ReadFlash::NAME;
+decltype(response::BootloaderCommit::VERSION) constexpr response::BootloaderCommit::VERSION;
+decltype(response::BootloaderCommit::NAME) constexpr response::BootloaderCommit::NAME;
+decltype(response::ApplicationDetails::VERSION) constexpr response::ApplicationDetails::VERSION;
+decltype(response::ApplicationDetails::NAME) constexpr response::ApplicationDetails::NAME;
+decltype(response::MemorySize::VERSION) constexpr response::MemorySize::VERSION;
+decltype(response::MemorySize::NAME) constexpr response::MemorySize::NAME;
 
 }  // namespace bootloader
 }  // namespace dai
