@@ -382,6 +382,7 @@ namespace response {
         // Data
         uint32_t success = 0;
         char errorMsg[64]{0};
+        uint32_t hasApplication = 0;
         uint32_t hasFirmwareVersion = 0;
         uint32_t hasApplicationName = 0;
         char firmwareVersionStr[256]{0};
