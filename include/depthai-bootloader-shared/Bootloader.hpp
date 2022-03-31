@@ -33,7 +33,7 @@ namespace request {
         READ_FLASH,
         GET_BOOTLOADER_COMMIT,
         GET_APPLICATION_DETAILS,
-        GET_MEMORY_SIZE,
+        GET_MEMORY_DETAILS,
     };
 
     struct BaseRequest {
@@ -230,15 +230,15 @@ namespace request {
         static constexpr const char* NAME = "GetApplicationDetails";
     };
 
-    struct GetMemorySize : BaseRequest {
+    struct GetMemoryDetails : BaseRequest {
         // Common
-        GetMemorySize() : BaseRequest(GET_MEMORY_SIZE) {}
+        GetMemoryDetails() : BaseRequest(GET_MEMORY_DETAILS) {}
 
         // Data
         Memory memory = Memory::FLASH;
 
         static constexpr const char* VERSION = "0.0.18";
-        static constexpr const char* NAME = "GetMemorySize";
+        static constexpr const char* NAME = "GetMemoryDetails";
     };
 }
 
@@ -256,7 +256,7 @@ namespace response {
         READ_FLASH,
         BOOTLOADER_COMMIT,
         APPLICATION_DETAILS,
-        MEMORY_SIZE,
+        MEMORY_DETAILS,
     };
 
     struct BaseResponse {
@@ -393,16 +393,17 @@ namespace response {
     };
 
 
-    struct MemorySize : BaseResponse {
+    struct MemoryDetails : BaseResponse {
         // Common
-        MemorySize() : BaseResponse(MEMORY_SIZE) {}
+        MemoryDetails() : BaseResponse(MEMORY_DETAILS) {}
 
         // Data
         Memory memory = Memory::FLASH;
         int64_t memorySize = 0;
+        char memoryInfo[512]{0};
 
         static constexpr const char* VERSION = "0.0.18";
-        static constexpr const char* NAME = "MemorySize";
+        static constexpr const char* NAME = "MemoryDetails";
     };
 
 }
