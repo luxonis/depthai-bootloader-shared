@@ -27,7 +27,8 @@ decltype(request::SetBootloaderConfig::NAME) constexpr request::SetBootloaderCon
 decltype(request::GetBootloaderConfig::VERSION) constexpr request::GetBootloaderConfig::VERSION;
 decltype(request::GetBootloaderConfig::NAME) constexpr request::GetBootloaderConfig::NAME;
 decltype(request::BootloaderMemory::VERSION) constexpr request::BootloaderMemory::VERSION;
-decltype(request::BootloaderMemory::NAME) constexpr request::BootloaderMemory::NAME;decltype(request::GetBootloaderCommit::VERSION) constexpr request::GetBootloaderCommit::VERSION;
+decltype(request::BootloaderMemory::NAME) constexpr request::BootloaderMemory::NAME;
+decltype(request::GetBootloaderCommit::VERSION) constexpr request::GetBootloaderCommit::VERSION;
 decltype(request::GetBootloaderCommit::NAME) constexpr request::GetBootloaderCommit::NAME;
 
 // Responses
