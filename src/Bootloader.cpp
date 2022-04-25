@@ -28,6 +28,8 @@ decltype(request::GetBootloaderConfig::VERSION) constexpr request::GetBootloader
 decltype(request::GetBootloaderConfig::NAME) constexpr request::GetBootloaderConfig::NAME;
 decltype(request::BootloaderMemory::VERSION) constexpr request::BootloaderMemory::VERSION;
 decltype(request::BootloaderMemory::NAME) constexpr request::BootloaderMemory::NAME;
+decltype(request::GetBootloaderCommit::VERSION) constexpr request::GetBootloaderCommit::VERSION;
+decltype(request::GetBootloaderCommit::NAME) constexpr request::GetBootloaderCommit::NAME;
 
 // Responses
 decltype(response::FlashComplete::VERSION) constexpr response::FlashComplete::VERSION;
@@ -44,6 +46,8 @@ decltype(response::BootloaderMemory::VERSION) constexpr response::BootloaderMemo
 decltype(response::BootloaderMemory::NAME) constexpr response::BootloaderMemory::NAME;
 decltype(response::BootApplication::VERSION) constexpr response::BootApplication::VERSION;
 decltype(response::BootApplication::NAME) constexpr response::BootApplication::NAME;
+decltype(response::BootloaderCommit::VERSION) constexpr response::BootloaderCommit::VERSION;
+decltype(response::BootloaderCommit::NAME) constexpr response::BootloaderCommit::NAME;
 
 }  // namespace bootloader
 }  // namespace dai

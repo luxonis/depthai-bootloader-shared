@@ -29,6 +29,8 @@ namespace request {
         SET_BOOTLOADER_CONFIG,
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
+        GET_BOOTLOADER_COMMIT,
+
     };
 
     struct BaseRequest {
@@ -172,6 +174,18 @@ namespace request {
         static constexpr const char* NAME = "BootloaderMemory";
     };
 
+    // 0.0.18
+    struct GetBootloaderCommit : BaseRequest {
+        // Common
+        GetBootloaderCommit() : BaseRequest(GET_BOOTLOADER_COMMIT) {}
+
+        // Data
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "GetBootloaderCommit";
+    };
+
+
 }
 
 
@@ -185,6 +199,7 @@ namespace response {
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
         BOOT_APPLICATION,
+        BOOTLOADER_COMMIT,
     };
 
     struct BaseResponse {
@@ -275,6 +290,17 @@ namespace response {
 
         static constexpr const char* VERSION = "0.0.14";
         static constexpr const char* NAME = "BootApplication";
+    };
+
+    struct BootloaderCommit : BaseResponse {
+        // Common
+        BootloaderCommit() : BaseResponse(BOOTLOADER_COMMIT) {}
+
+        // Data
+        char commitStr[64]{0};
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "BootloaderCommit";
     };
 }
 
