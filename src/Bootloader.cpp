@@ -28,12 +28,12 @@ decltype(request::GetBootloaderConfig::VERSION) constexpr request::GetBootloader
 decltype(request::GetBootloaderConfig::NAME) constexpr request::GetBootloaderConfig::NAME;
 decltype(request::BootloaderMemory::VERSION) constexpr request::BootloaderMemory::VERSION;
 decltype(request::BootloaderMemory::NAME) constexpr request::BootloaderMemory::NAME;
+decltype(request::GetBootloaderCommit::VERSION) constexpr request::GetBootloaderCommit::VERSION;
+decltype(request::GetBootloaderCommit::NAME) constexpr request::GetBootloaderCommit::NAME;
 decltype(request::UpdateFlashBootHeader::VERSION) constexpr request::UpdateFlashBootHeader::VERSION;
 decltype(request::UpdateFlashBootHeader::NAME) constexpr request::UpdateFlashBootHeader::NAME;
 decltype(request::ReadFlash::VERSION) constexpr request::ReadFlash::VERSION;
 decltype(request::ReadFlash::NAME) constexpr request::ReadFlash::NAME;
-decltype(request::GetBootloaderCommit::VERSION) constexpr request::GetBootloaderCommit::VERSION;
-decltype(request::GetBootloaderCommit::NAME) constexpr request::GetBootloaderCommit::NAME;
 decltype(request::GetApplicationDetails::VERSION) constexpr request::GetApplicationDetails::VERSION;
 decltype(request::GetApplicationDetails::NAME) constexpr request::GetApplicationDetails::NAME;
 decltype(request::GetMemoryDetails::VERSION) constexpr request::GetMemoryDetails::VERSION;
@@ -54,10 +54,10 @@ decltype(response::BootloaderMemory::VERSION) constexpr response::BootloaderMemo
 decltype(response::BootloaderMemory::NAME) constexpr response::BootloaderMemory::NAME;
 decltype(response::BootApplication::VERSION) constexpr response::BootApplication::VERSION;
 decltype(response::BootApplication::NAME) constexpr response::BootApplication::NAME;
-decltype(response::ReadFlash::VERSION) constexpr response::ReadFlash::VERSION;
-decltype(response::ReadFlash::NAME) constexpr response::ReadFlash::NAME;
 decltype(response::BootloaderCommit::VERSION) constexpr response::BootloaderCommit::VERSION;
 decltype(response::BootloaderCommit::NAME) constexpr response::BootloaderCommit::NAME;
+decltype(response::ReadFlash::VERSION) constexpr response::ReadFlash::VERSION;
+decltype(response::ReadFlash::NAME) constexpr response::ReadFlash::NAME;
 decltype(response::ApplicationDetails::VERSION) constexpr response::ApplicationDetails::VERSION;
 decltype(response::ApplicationDetails::NAME) constexpr response::ApplicationDetails::NAME;
 decltype(response::MemoryDetails::VERSION) constexpr response::MemoryDetails::VERSION;

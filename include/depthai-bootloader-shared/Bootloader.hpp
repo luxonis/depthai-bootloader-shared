@@ -29,9 +29,9 @@ namespace request {
         SET_BOOTLOADER_CONFIG,
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
+        GET_BOOTLOADER_COMMIT,
         UPDATE_FLASH_BOOT_HEADER,
         READ_FLASH,
-        GET_BOOTLOADER_COMMIT,
         GET_APPLICATION_DETAILS,
         GET_MEMORY_DETAILS,
     };
@@ -177,6 +177,19 @@ namespace request {
         static constexpr const char* NAME = "BootloaderMemory";
     };
 
+    // 0.0.18
+    struct GetBootloaderCommit : BaseRequest {
+        // Common
+        GetBootloaderCommit() : BaseRequest(GET_BOOTLOADER_COMMIT) {}
+
+        // Data
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "GetBootloaderCommit";
+    };
+
+
+    // 0.0.19
     struct UpdateFlashBootHeader : BaseRequest {
         // Common
         UpdateFlashBootHeader() : BaseRequest(UPDATE_FLASH_BOOT_HEADER) {}
@@ -207,17 +220,6 @@ namespace request {
 
         static constexpr const char* VERSION = "0.0.16";
         static constexpr const char* NAME = "ReadFlash";
-    };
-
-    // 0.0.18
-    struct GetBootloaderCommit : BaseRequest {
-        // Common
-        GetBootloaderCommit() : BaseRequest(GET_BOOTLOADER_COMMIT) {}
-
-        // Data
-
-        static constexpr const char* VERSION = "0.0.18";
-        static constexpr const char* NAME = "GetBootloaderCommit";
     };
 
     struct GetApplicationDetails : BaseRequest {
@@ -253,8 +255,8 @@ namespace response {
         GET_BOOTLOADER_CONFIG,
         BOOTLOADER_MEMORY,
         BOOT_APPLICATION,
-        READ_FLASH,
         BOOTLOADER_COMMIT,
+        READ_FLASH,
         APPLICATION_DETAILS,
         MEMORY_DETAILS,
     };
@@ -349,6 +351,19 @@ namespace response {
         static constexpr const char* NAME = "BootApplication";
     };
 
+    // 0.0.18
+    struct BootloaderCommit : BaseResponse {
+        // Common
+        BootloaderCommit() : BaseResponse(BOOTLOADER_COMMIT) {}
+
+        // Data
+        char commitStr[64]{0};
+
+        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* NAME = "BootloaderCommit";
+    };
+
+    // 0.0.19
     struct ReadFlash : BaseResponse {
         // Common
         ReadFlash() : BaseResponse(READ_FLASH) {}
@@ -363,16 +378,6 @@ namespace response {
         static constexpr const char* NAME = "ReadFlash";
     };
 
-    struct BootloaderCommit : BaseResponse {
-        // Common
-        BootloaderCommit() : BaseResponse(BOOTLOADER_COMMIT) {}
-
-        // Data
-        char commitStr[64]{0};
-
-        static constexpr const char* VERSION = "0.0.18";
-        static constexpr const char* NAME = "BootloaderCommit";
-    };
 
 
     struct ApplicationDetails : BaseResponse {
