@@ -205,7 +205,7 @@ namespace request {
         int32_t gpioMode = -1;
 
 
-        static constexpr const char* VERSION = "0.0.16";
+        static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "UpdateFlashBootHeader";
     };
 
@@ -218,7 +218,7 @@ namespace request {
         uint32_t offset = 0;
         uint32_t totalSize = 0;
 
-        static constexpr const char* VERSION = "0.0.16";
+        static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "ReadFlash";
     };
 
@@ -227,8 +227,9 @@ namespace request {
         GetApplicationDetails() : BaseRequest(GET_APPLICATION_DETAILS) {}
 
         // Data
+        Memory memory = Memory::FLASH;
 
-        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "GetApplicationDetails";
     };
 
@@ -239,7 +240,7 @@ namespace request {
         // Data
         Memory memory = Memory::FLASH;
 
-        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "GetMemoryDetails";
     };
 }
@@ -374,7 +375,7 @@ namespace response {
         uint32_t totalSize = 0;
         uint32_t numPackets = 0;
 
-        static constexpr const char* VERSION = "0.0.16";
+        static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "ReadFlash";
     };
 
@@ -393,7 +394,7 @@ namespace response {
         char firmwareVersionStr[256]{0};
         char applicationNameStr[4*1024]{0};
 
-        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "ApplicationVersion";
     };
 
@@ -403,11 +404,12 @@ namespace response {
         MemoryDetails() : BaseResponse(MEMORY_DETAILS) {}
 
         // Data
+        uint32_t hasMemory = 0;
         Memory memory = Memory::FLASH;
         int64_t memorySize = 0;
         char memoryInfo[512]{0};
 
-        static constexpr const char* VERSION = "0.0.18";
+        static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "MemoryDetails";
     };
 
