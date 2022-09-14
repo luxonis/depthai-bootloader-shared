@@ -74,6 +74,8 @@ struct Config {
     Memory appMem = Memory::AUTO;
     UsbConfig usb;
     NetworkConfig network;
+    uint32_t userBlSize = 0;
+    uint32_t userBlChecksum = 0;
 };
 DEPTHAI_BOOTLOADER_NLOHMANN_DEFINE_TYPE_OPTIONAL_NON_INTRUSIVE(Config, appMem, usb, network);
 
