@@ -28,7 +28,7 @@ struct NetworkBootloaderStructure : Structure {
     constexpr static long HEADER_SIZE = 512;
     constexpr static long CONFIG_SIZE = 16 * 1024;
     constexpr static long BOOTLOADER_OFFSET = HEADER_OFFSET + HEADER_SIZE;
-    constexpr static long BOOTLOADER_SIZE = 4 * 1024 * 1024 - 256 * 1024 - HEADER_SIZE;
+    constexpr static long BOOTLOADER_SIZE = 4 * 1024 * 1024 - HEADER_SIZE;
     constexpr static long USER_BOOTLOADER_OFFSET = BOOTLOADER_OFFSET + BOOTLOADER_SIZE;
     constexpr static long USER_BOOTLOADER_SIZE = 8 * 1024 * 1024 - BOOTLOADER_SIZE - CONFIG_SIZE - HEADER_SIZE;
     constexpr static long CONFIG_OFFSET = USER_BOOTLOADER_OFFSET + USER_BOOTLOADER_SIZE;
