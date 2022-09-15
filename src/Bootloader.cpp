@@ -66,6 +66,8 @@ decltype(response::MemoryDetails::VERSION) constexpr response::MemoryDetails::VE
 decltype(response::MemoryDetails::NAME) constexpr response::MemoryDetails::NAME;
 decltype(response::IsUserBootloader::VERSION) constexpr response::IsUserBootloader::VERSION;
 decltype(response::IsUserBootloader::NAME) constexpr response::IsUserBootloader::NAME;
+decltype(response::NoOp::VERSION) constexpr response::NoOp::VERSION;
+decltype(response::NoOp::NAME) constexpr response::NoOp::NAME;
 
 }  // namespace bootloader
 }  // namespace dai

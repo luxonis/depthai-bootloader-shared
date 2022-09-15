@@ -270,6 +270,7 @@ namespace response {
         APPLICATION_DETAILS,
         MEMORY_DETAILS,
         IS_USER_BOOTLOADER,
+        NO_OP,
     };
 
     struct BaseResponse {
@@ -434,6 +435,15 @@ namespace response {
         static constexpr const char* NAME = "IsUserBootloader";
     };
 
+    struct NoOp : BaseResponse {
+        // Common
+        NoOp() : BaseResponse(NO_OP) {}
+        // Data
+        uint32_t invalidOp = 0;
+
+        static constexpr const char* VERSION = "0.0.21";
+        static constexpr const char* NAME = "NO_OP";
+    };
 }
 
 } // namespace bootloader
