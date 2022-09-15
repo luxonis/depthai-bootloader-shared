@@ -38,6 +38,8 @@ decltype(request::GetApplicationDetails::VERSION) constexpr request::GetApplicat
 decltype(request::GetApplicationDetails::NAME) constexpr request::GetApplicationDetails::NAME;
 decltype(request::GetMemoryDetails::VERSION) constexpr request::GetMemoryDetails::VERSION;
 decltype(request::GetMemoryDetails::NAME) constexpr request::GetMemoryDetails::NAME;
+decltype(request::IsUserBootloader::VERSION) constexpr request::IsUserBootloader::VERSION;
+decltype(request::IsUserBootloader::NAME) constexpr request::IsUserBootloader::NAME;
 
 // Responses
 decltype(response::FlashComplete::VERSION) constexpr response::FlashComplete::VERSION;
@@ -62,6 +64,8 @@ decltype(response::ApplicationDetails::VERSION) constexpr response::ApplicationD
 decltype(response::ApplicationDetails::NAME) constexpr response::ApplicationDetails::NAME;
 decltype(response::MemoryDetails::VERSION) constexpr response::MemoryDetails::VERSION;
 decltype(response::MemoryDetails::NAME) constexpr response::MemoryDetails::NAME;
+decltype(response::IsUserBootloader::VERSION) constexpr response::IsUserBootloader::VERSION;
+decltype(response::IsUserBootloader::NAME) constexpr response::IsUserBootloader::NAME;
 
 }  // namespace bootloader
 }  // namespace dai
