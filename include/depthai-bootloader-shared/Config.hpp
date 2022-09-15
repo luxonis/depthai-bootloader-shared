@@ -77,7 +77,7 @@ struct Config {
     uint32_t userBlSize = 0;
     uint32_t userBlChecksum = 0;
 };
-DEPTHAI_BOOTLOADER_NLOHMANN_DEFINE_TYPE_OPTIONAL_NON_INTRUSIVE(Config, appMem, usb, network);
+DEPTHAI_BOOTLOADER_NLOHMANN_DEFINE_TYPE_OPTIONAL_NON_INTRUSIVE(Config, appMem, usb, network, userBlSize, userBlChecksum);
 
 } // namespace bootloader
 } // namespace dai
