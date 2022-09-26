@@ -34,6 +34,7 @@ namespace request {
         READ_FLASH,
         GET_APPLICATION_DETAILS,
         GET_MEMORY_DETAILS,
+        IS_USER_BOOTLOADER,
     };
 
     struct BaseRequest {
@@ -243,6 +244,14 @@ namespace request {
         static constexpr const char* VERSION = "0.0.19";
         static constexpr const char* NAME = "GetMemoryDetails";
     };
+
+    struct IsUserBootloader : BaseRequest {
+        // Common
+        IsUserBootloader() : BaseRequest(IS_USER_BOOTLOADER) {}
+
+        static constexpr const char* VERSION = "0.0.21";
+        static constexpr const char* NAME = "IsUserBootloader";
+    };
 }
 
 
@@ -260,6 +269,8 @@ namespace response {
         READ_FLASH,
         APPLICATION_DETAILS,
         MEMORY_DETAILS,
+        IS_USER_BOOTLOADER,
+        NO_OP,
     };
 
     struct BaseResponse {
@@ -413,6 +424,26 @@ namespace response {
         static constexpr const char* NAME = "MemoryDetails";
     };
 
+    struct IsUserBootloader : BaseResponse {
+        // Common
+        IsUserBootloader() : BaseResponse(IS_USER_BOOTLOADER) {}
+
+        // Data
+        uint32_t isUserBootloader = 0;
+
+        static constexpr const char* VERSION = "0.0.21";
+        static constexpr const char* NAME = "IsUserBootloader";
+    };
+
+    struct NoOp : BaseResponse {
+        // Common
+        NoOp() : BaseResponse(NO_OP) {}
+        // Data
+        uint32_t invalidOp = 0;
+
+        static constexpr const char* VERSION = "0.0.21";
+        static constexpr const char* NAME = "NO_OP";
+    };
 }
 
 } // namespace bootloader
